@@ -1,6 +1,5 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-//use std::any::type_name;
 
 fn main(){
     println!("Running day2 solution !");

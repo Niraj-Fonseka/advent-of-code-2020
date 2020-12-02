@@ -1,6 +1,5 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-//use std::any::type_name;
 
 fn main(){
     println!("Running day2 solution !");
@@ -22,7 +21,6 @@ fn main(){
         let max = split_min_max_range_vec[1].parse::<usize>().unwrap()-1;
 
         let c_check = char_to_range_vec[1].chars().nth(0).unwrap();
-        // let c_check_to_index = c_check as usize - 48;
         let password = number_str_vec[1].trim();
 
         
