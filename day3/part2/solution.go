@@ -41,11 +41,11 @@ func traverse(grid [][]rune, y, x int) int {
 		stepRow += x
 
 		if stepCol > len(grid[0])-1 { //overstep x
-			stepCol = (stepCol - (len(grid[0])))
+			stepCol = (stepCol - (len(grid[0]))) //index reset
 		}
 
 		if stepRow > len(grid)-1 {
-			break
+			break //reached / overstepping end
 		}
 		if grid[stepRow][stepCol] == 35 {
 			trees++
