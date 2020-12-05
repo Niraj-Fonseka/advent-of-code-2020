@@ -49,6 +49,7 @@ fn main(){
                     if key_value_split[0] == "cid" {
                         cid = true;
                     }
+
                     count += 1;
                 }
         }
