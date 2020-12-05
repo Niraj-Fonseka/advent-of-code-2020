@@ -3,7 +3,7 @@ use std::io::{BufRead,BufReader};
 use std::collections::HashMap;
 
 fn main(){
-    println!("Running day4 solution !");
+    println!("Running Day 4  solution !");
 
 
     let file = File::open("./../input.txt").unwrap();
