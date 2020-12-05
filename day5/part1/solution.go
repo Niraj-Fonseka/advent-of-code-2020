@@ -10,7 +10,7 @@ import (
 func main() {
 
 	c, _ := ioutil.ReadFile("./../input.txt")
-	max := 0
+	maxSeat := 0
 	for _, line := range bytes.Split(c, []byte("\n")) {
 		if len(line) == 0 || len(line) > 10 {
 			continue
@@ -28,12 +28,12 @@ func main() {
 		seatID := int((row * 8) + col)
 
 		fmt.Printf("Boarding Pass : %s , Seat ID : %d \n", line, seatID)
-		if max < seatID {
-			max = seatID
+		if maxSeat < seatID {
+			maxSeat = seatID
 		}
 	}
 
-	fmt.Println("\nMax Seat : ", max)
+	fmt.Println("\nMax Seat : ", maxSeat)
 }
 
 func traverse(vals []byte, letterA byte, letterB byte, index int, min float64, max float64, midpoint float64) float64 {
