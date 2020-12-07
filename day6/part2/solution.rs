@@ -10,6 +10,7 @@ fn main(){
 
     let mut map = HashMap::new();
     let mut total_questions = 0;
+    let mut group_size = 0;
     for (_index, line) in reader.lines().enumerate(){
 
         let line_str = line.unwrap();
@@ -22,9 +23,15 @@ fn main(){
                     map.insert(c,1);
                 }
             }
-            
+            group_size += 1;
         }else{
-            total_questions += map.len();
+            for (_key , &value) in &map{
+                if value == group_size {
+                    total_questions += 1;
+                }
+            }
+
+            group_size = 0;
             map.clear();
         }
     }
