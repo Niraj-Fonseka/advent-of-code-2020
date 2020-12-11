@@ -46,7 +46,15 @@ func main() {
 
 	}
 
-	fmt.Println("Total bags :", len(collected))
+	fmt.Println(collected)
+	//	fmt.Println(prepedData)
+	// var total int64
+	// for c, _ := range collected {
+	// 	itContains := prepedData[c]
+	// }
+
+	// fmt.Println("Bags : ", collected)
+	// fmt.Println("Total bags :", len(collected))
 }
 
 func dataPrep() map[string]map[string]int64 {
