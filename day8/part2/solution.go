@@ -44,12 +44,17 @@ func main() {
 
 	for {
 
+		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
+		pevap := sp
+
 		if visited[sp] == 1 {
 			break
 		}
 		visited[sp] = 1
 		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
+		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[pevap], sp, accumulator)
 
+		//time.Sleep(1 * time.Second)
 	}
 
 	fmt.Println("Final Accumulator : ", accumulator)
@@ -60,6 +65,7 @@ func processInstruction(instruction string, sp int, acc int) (int, int) {
 
 	switch instruction {
 	case "nop":
+		//do this
 		return sp + 1, acc
 	case "jmp":
 		return sp + values[sp], acc
