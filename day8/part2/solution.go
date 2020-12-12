@@ -7,6 +7,7 @@ import (
 	"log"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var (
@@ -15,7 +16,7 @@ var (
 )
 
 func main() {
-	c, err := ioutil.ReadFile("./../input.txt")
+	c, err := ioutil.ReadFile("./../input1.txt")
 
 	if err != nil {
 		log.Fatal(err)
@@ -41,20 +42,45 @@ func main() {
 
 	accumulator := 0
 	sp := 0
-
+	prevsp := 0
 	for {
 
 		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
-		pevap := sp
+
+		visited[sp] = 1
+		prevsp = sp
+		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
+		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[prevsp], sp, accumulator)
 
 		if visited[sp] == 1 {
+			instructions[prevsp] = "nop"
 			break
 		}
-		visited[sp] = 1
-		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
-		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[pevap], sp, accumulator)
+		time.Sleep(1 * time.Second)
+	}
 
-		//time.Sleep(1 * time.Second)
+	fmt.Println("Breaking ... ", instructions)
+
+	time.Sleep(5 * time.Second)
+
+	accumulator = 0
+	sp = 0
+	prevsp = 0
+	visited = make([]int, len(values))
+	for {
+
+		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
+
+		visited[sp] = 1
+		prevsp = sp
+
+		if sp > len(values) {
+			break
+		}
+		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
+		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[prevsp], sp, accumulator)
+
+		time.Sleep(1 * time.Second)
 	}
 
 	fmt.Println("Final Accumulator : ", accumulator)
