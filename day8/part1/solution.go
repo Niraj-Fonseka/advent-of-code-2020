@@ -15,7 +15,7 @@ var (
 )
 
 func main() {
-	c, err := ioutil.ReadFile("./../input.txt")
+	c, err := ioutil.ReadFile("./../input1.txt")
 
 	if err != nil {
 		log.Fatal(err)
@@ -43,6 +43,8 @@ func main() {
 	sp := 0
 
 	for {
+
+		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
 
 		if visited[sp] == 1 {
 			break

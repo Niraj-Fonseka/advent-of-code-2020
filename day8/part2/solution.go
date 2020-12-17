@@ -7,7 +7,6 @@ import (
 	"log"
 	"strconv"
 	"strings"
-	"time"
 )
 
 var (
@@ -42,47 +41,20 @@ func main() {
 
 	accumulator := 0
 	sp := 0
-	prevsp := 0
+
 	for {
 
 		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
-
-		visited[sp] = 1
-		prevsp = sp
-		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
-		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[prevsp], sp, accumulator)
 
 		if visited[sp] == 1 {
-			instructions[prevsp] = "nop"
 			break
 		}
-		time.Sleep(1 * time.Second)
-	}
-
-	fmt.Println("Breaking ... ", instructions)
-
-	time.Sleep(5 * time.Second)
-
-	accumulator = 0
-	sp = 0
-	prevsp = 0
-	visited = make([]int, len(values))
-	for {
-
-		fmt.Printf("processing instruction : %s , sp : %d , acc : %d \n", instructions[sp], sp, accumulator)
-
 		visited[sp] = 1
-		prevsp = sp
-
-		if sp > len(values) {
-			break
-		}
 		sp, accumulator = processInstruction(instructions[sp], sp, accumulator)
-		fmt.Printf("processed instruction : %s , sp : %d , acc : %d \n\n", instructions[prevsp], sp, accumulator)
 
-		time.Sleep(1 * time.Second)
 	}
 
+	fmt.Println("Visited : ", visited)
 	fmt.Println("Final Accumulator : ", accumulator)
 
 }
@@ -91,7 +63,6 @@ func processInstruction(instruction string, sp int, acc int) (int, int) {
 
 	switch instruction {
 	case "nop":
-		//do this
 		return sp + 1, acc
 	case "jmp":
 		return sp + values[sp], acc
